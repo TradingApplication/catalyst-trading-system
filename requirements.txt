@@ -36,7 +36,7 @@ ujson==5.9.0
 jsonschema==4.20.0
 
 # Async support
-aiohttp==3.9.1
+# Let alpaca-trade-api determine aiohttp version
 aiofiles==23.2.1
 
 # Utilities
