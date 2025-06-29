@@ -43,7 +43,7 @@ except ImportError as e:
 
 # Import database utilities if available
 try:
-    from database_utils import DatabaseServiceMixin
+    from database_utils_old import DatabaseServiceMixin
     USE_DB_UTILS = True
 except ImportError:
     USE_DB_UTILS = False
