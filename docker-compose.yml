@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   # =============================================================================
-  # CATALYST TRADING SYSTEM - DIGITALOCEAN DEPLOYMENT
-  # Budget: $96 AUD/month (8GB Droplet + Managed DB)
+  # CATALYST TRADING SYSTEM - BUDGET DIGITALOCEAN DEPLOYMENT
+  # Budget: ~$40 USD/month (4GB Droplet + Managed DB)
+  # Personal Trading System - Optimized for Single User
   # =============================================================================
 
   # -----------------------------------------------------------------------------
@@ -30,9 +31,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 256M
-        reservations:
           memory: 128M
+        reservations:
+          memory: 64M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/health"]
@@ -66,13 +67,12 @@ services:
       - LOG_LEVEL=INFO
     depends_on:
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 512M
-        reservations:
           memory: 256M
+        reservations:
+          memory: 128M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
@@ -105,13 +105,12 @@ services:
       - LOG_LEVEL=INFO
     depends_on:
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 512M
-        reservations:
           memory: 256M
+        reservations:
+          memory: 128M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5008/health"]
@@ -141,16 +140,18 @@ services:
       - NEWS_SERVICE_URL=http://news-service:5008
       - COORDINATION_URL=http://coordination-service:5000
       - LOG_LEVEL=INFO
+      # Memory optimization flags
+      - PYTHONOPTIMIZE=1
+      - MALLOC_TRIM_THRESHOLD_=100000
     depends_on:
       - redis
-      - postgres-check
       - news-service
     deploy:
       resources:
         limits:
-          memory: 1G
-        reservations:
           memory: 512M
+        reservations:
+          memory: 256M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
@@ -179,15 +180,17 @@ services:
       - REDIS_URL=redis://redis:6379
       - COORDINATION_URL=http://coordination-service:5000
       - LOG_LEVEL=INFO
+      # Memory optimization flags
+      - PYTHONOPTIMIZE=1
+      - MALLOC_TRIM_THRESHOLD_=100000
     depends_on:
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 1G
-        reservations:
           memory: 512M
+        reservations:
+          memory: 256M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5002/health"]
@@ -216,15 +219,17 @@ services:
       - REDIS_URL=redis://redis:6379
       - COORDINATION_URL=http://coordination-service:5000
       - LOG_LEVEL=INFO
+      # Memory optimization flags
+      - PYTHONOPTIMIZE=1
+      - MALLOC_TRIM_THRESHOLD_=100000
     depends_on:
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 1G
-        reservations:
           memory: 512M
+        reservations:
+          memory: 256M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5003/health"]
@@ -261,13 +266,12 @@ services:
       - LOG_LEVEL=INFO
     depends_on:
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 512M
-        reservations:
           memory: 256M
+        reservations:
+          memory: 128M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5005/health"]
@@ -298,13 +302,12 @@ services:
       - LOG_LEVEL=INFO
     depends_on:
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 512M
-        reservations:
           memory: 256M
+        reservations:
+          memory: 128M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5009/health"]
@@ -339,16 +342,17 @@ services:
       - TRADING_SERVICE_URL=http://trading-service:5005
       - REPORTING_SERVICE_URL=http://reporting-service:5009
       - LOG_LEVEL=INFO
+      # Memory optimization for single user
+      - MAX_WORKERS=2
     depends_on:
       - coordination-service
       - redis
-      - postgres-check
     deploy:
       resources:
         limits:
-          memory: 1G
-        reservations:
           memory: 512M
+        reservations:
+          memory: 256M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5010/health"]
@@ -364,19 +368,25 @@ services:
   # SUPPORTING SERVICES
   # -----------------------------------------------------------------------------
 
-  # Redis Cache
+  # Redis Cache (Optimized for 4GB droplet)
   redis:
     image: redis:7-alpine
     container_name: catalyst-redis
     ports:
       - "6379:6379"
-    command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru --save 60 1000
+    command: >
+      redis-server 
+      --maxmemory 512mb 
+      --maxmemory-policy allkeys-lru 
+      --save 300 10
+      --appendonly yes
+      --appendfsync everysec
     deploy:
       resources:
         limits:
-          memory: 1G
-        reservations:
           memory: 512M
+        reservations:
+          memory: 256M
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -388,29 +398,7 @@ services:
     networks:
       - catalyst-network
 
-  # Database Connection Check
-  postgres-check:
-    image: postgres:14-alpine
-    container_name: postgres-check
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-    command: >
-      sh -c "
-      until pg_isready -d \"$$DATABASE_URL\"; do
-        echo 'Waiting for database...';
-        sleep 2;
-      done;
-      echo 'Database is ready!';
-      exit 0;
-      "
-    deploy:
-      resources:
-        limits:
-          memory: 128M
-    networks:
-      - catalyst-network
-
-  # Prometheus Monitoring
+  # Prometheus Monitoring (Lightweight config)
   prometheus:
     image: prom/prometheus:latest
     container_name: catalyst-prometheus
@@ -422,16 +410,14 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/etc/prometheus/console_libraries'
-      - '--web.console.templates=/etc/prometheus/consoles'
-      - '--storage.tsdb.retention.time=200h'
+      - '--storage.tsdb.retention.time=48h'  # Reduced retention for space
       - '--web.enable-lifecycle'
     deploy:
       resources:
         limits:
-          memory: 512M
-        reservations:
           memory: 256M
+        reservations:
+          memory: 128M
     restart: unless-stopped
     networks:
       - catalyst-network
@@ -464,20 +450,27 @@ networks:
         - subnet: 172.20.0.0/16
 
 # =============================================================================
-# RESOURCE SUMMARY (8GB Droplet)
+# BUDGET RESOURCE SUMMARY (4GB Droplet)
 # =============================================================================
-# Scanner Service:     1GB (heavy processing)
-# Pattern Service:     1GB (TA-Lib computations)
-# Technical Service:   1GB (TA-Lib computations)
-# Dashboard Service:   1GB (web interface)
-# Redis Cache:         1GB (data caching)
-# Coordination:        512MB
-# News Collection:     512MB
-# Trading Service:     512MB
-# Reporting Service:   512MB
-# Prometheus:          512MB
-# Nginx:               256MB
-# Postgres Check:      128MB
+# Scanner Service:     512MB (reduced from 1GB)
+# Pattern Service:     512MB (reduced from 1GB)
+# Technical Service:   512MB (reduced from 1GB)
+# Dashboard Service:   512MB (reduced from 1GB)
+# Redis Cache:         512MB (reduced from 1GB)
+# Coordination:        256MB (reduced from 512MB)
+# News Collection:     256MB (reduced from 512MB)
+# Trading Service:     256MB (reduced from 512MB)
+# Reporting Service:   256MB (reduced from 512MB)
+# Prometheus:          256MB (reduced from 512MB)
+# Nginx:               128MB (reduced from 256MB)
 # =============================================================================
-# TOTAL ALLOCATED:     ~8GB (optimized for 8GB droplet)
+# TOTAL ALLOCATED:     ~3.5GB (leaves ~500MB for OS and headroom)
+# =============================================================================
+# 
+# OPTIMIZATION NOTES:
+# - Redis configured with aggressive memory limits and LRU eviction
+# - Python services use PYTHONOPTIMIZE=1 to reduce memory
+# - Prometheus retention reduced to 48 hours
+# - All services have proper memory limits to prevent OOM
+# - Single user optimizations in dashboard (MAX_WORKERS=2)
 # =============================================================================

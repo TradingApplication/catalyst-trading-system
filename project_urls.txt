@@ -1,7 +1,7 @@
 GitHub Repository URLs for Direct Access
 Repository: TradingApplication/catalyst-trading-system
 Branch: main
-Generated: 2025-06-29 08:36:28
+Generated: 2025-06-29 08:44:28
 ================================================================================
 
 RAW URLS (for Claude/API access):
@@ -33,6 +33,30 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 Implementation/DOI/.env.example
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/.env.example
 
+Implementation/DOI/Dockerfile.coordination
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.coordination
+
+Implementation/DOI/Dockerfile.dashboard
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.dashboard
+
+Implementation/DOI/Dockerfile.news
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.news
+
+Implementation/DOI/Dockerfile.patterns
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.patterns
+
+Implementation/DOI/Dockerfile.reporting
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.reporting
+
+Implementation/DOI/Dockerfile.scanner
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.scanner
+
+Implementation/DOI/Dockerfile.technical
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.technical
+
+Implementation/DOI/Dockerfile.trading
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/Dockerfile.trading
+
 Implementation/DOI/catalyst-setup-script.sh
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/catalyst-setup-script.sh
 
@@ -42,38 +66,14 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 Implementation/DOI/docker-compose.yml
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/docker-compose.yml
 
-Implementation/DOI/dockerfile-coordination
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile-coordination
-
-Implementation/DOI/dockerfile-dashboard
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile-dashboard
-
-Implementation/DOI/dockerfile-patterns
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile-patterns
-
-Implementation/DOI/dockerfile-reporting
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile-reporting
-
-Implementation/DOI/dockerfile-technical
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile-technical
-
-Implementation/DOI/dockerfile-trading
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile-trading
-
-Implementation/DOI/dockerfile_news
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile_news
-
-Implementation/DOI/dockerfile_scanner
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/dockerfile_scanner
-
 Implementation/DOI/init_database.sql
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/init_database.sql
 
-Implementation/DOI/nginx_config
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/nginx_config
+Implementation/DOI/nginx.conf
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/nginx.conf
 
-Implementation/DOI/prometheus_config
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/prometheus_config
+Implementation/DOI/prometheus.yml
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/prometheus.yml
 
 Implementation/DOI/requirements.txt
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/DOI/requirements.txt
@@ -101,6 +101,12 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 
 project_index.txt
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/project_index.txt
+
+project_urls.md
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/project_urls.md
+
+project_urls.txt
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/project_urls.txt
 
 security-scanner.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/security-scanner.py
