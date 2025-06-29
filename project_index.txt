@@ -1,0 +1,106 @@
+Repository Index Generated: 2025-06-29 07:24:52
+Repository Root: /workspaces/catalyst-trading-system
+================================================================================
+
+📁 DIRECTORY STRUCTURE:
+----------------------------------------
+📁 Documentation/
+📁 Implementation/
+  📁 DOI/
+
+📄 FILES BY CATEGORY:
+----------------------------------------
+
+Python Files (5):
+  - coordination-service-v200 (1).py
+  - list_repo_files.py
+  - news-service-v200 (2).py
+  - news-service.py
+  - security-scanner.py
+
+Documentation Files (19):
+  - Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt
+  - Documentation/Catalyst Trading System - Architecture v2.0.0.md
+  - Documentation/Catalyst Trading System - Database Schema v2.0.0.md
+  - Documentation/Catalyst Trading System - Database Services & Data Management v2.0.0.md
+  - Documentation/Catalyst Trading System - Functional Specification v2.0.0.md
+  - Implementation/DOI/docker_compose_main.txt
+  - Implementation/DOI/dockerfile-coordination.txt
+  - Implementation/DOI/dockerfile-dashboard.txt
+  - Implementation/DOI/dockerfile-reporting.txt
+  - Implementation/DOI/dockerfile-technical.txt
+  - Implementation/DOI/dockerfile-trading.txt
+  - Implementation/DOI/dockerfile_news.txt
+  - Implementation/DOI/dockerfile_scanner.txt
+  - Implementation/DOI/nginx_config.txt
+  - Implementation/DOI/prometheus_config.txt
+  - Implementation/DOI/requirements.txt
+  - Implementation/Digital Ocean Implementation - Option 1.md
+  - README.md
+  - project_index.txt
+
+Scripts Files (2):
+  - Implementation/DOI/env_template.sh
+  - Implementation/catalyst-setup-script.sh
+
+Data Files (1):
+  - Implementation/DOI/init_database.sql
+
+Other Files (2):
+  - Documentation/File List 28Jun25
+  - Implementation/Catalyst Trading System - Implementation Plan v2.0.0
+
+📊 SUMMARY:
+----------------------------------------
+Total Directories: 3
+Total Files: 29
+
+🔍 CHECKING FOR REQUIRED FILES:
+----------------------------------------
+❌ docker-compose.yml
+❌ .env.example
+✅ requirements.txt
+❌ nginx.conf
+❌ prometheus.yml
+✅ init_database.sql
+❌ Dockerfile.coordination
+❌ Dockerfile.news
+❌ Dockerfile.scanner
+❌ Dockerfile.patterns
+❌ Dockerfile.technical
+❌ Dockerfile.trading
+❌ Dockerfile.reporting
+❌ Dockerfile.dashboard
+✅ README.md
+
+📋 SIMPLE FILE LISTING (for copying):
+----------------------------------------
+Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt
+Documentation/Catalyst Trading System - Architecture v2.0.0.md
+Documentation/Catalyst Trading System - Database Schema v2.0.0.md
+Documentation/Catalyst Trading System - Database Services & Data Management v2.0.0.md
+Documentation/Catalyst Trading System - Functional Specification v2.0.0.md
+Documentation/File List 28Jun25
+Implementation/Catalyst Trading System - Implementation Plan v2.0.0
+Implementation/DOI/docker_compose_main.txt
+Implementation/DOI/dockerfile-coordination.txt
+Implementation/DOI/dockerfile-dashboard.txt
+Implementation/DOI/dockerfile-reporting.txt
+Implementation/DOI/dockerfile-technical.txt
+Implementation/DOI/dockerfile-trading.txt
+Implementation/DOI/dockerfile_news.txt
+Implementation/DOI/dockerfile_scanner.txt
+Implementation/DOI/env_template.sh
+Implementation/DOI/init_database.sql
+Implementation/DOI/nginx_config.txt
+Implementation/DOI/prometheus_config.txt
+Implementation/DOI/requirements.txt
+Implementation/Digital Ocean Implementation - Option 1.md
+Implementation/catalyst-setup-script.sh
+README.md
+coordination-service-v200 (1).py
+list_repo_files.py
+news-service-v200 (2).py
+news-service.py
+project_index.txt
+security-scanner.py
