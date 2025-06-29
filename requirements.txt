@@ -1,79 +1,15 @@
-# Stage 2: Requirements with pre-built wheels
-# These should work on DigitalOcean App Platform
-
-# Web Framework
+# Ultra-minimal to ensure deployment works
+cat > requirements.txt << 'EOF'
 Flask==3.0.0
 gunicorn==21.2.0
 Flask-CORS==4.0.0
-Werkzeug==3.0.1
-
-# Database
+requests==2.31.0
+python-dotenv==1.0.0
 psycopg2-binary==2.9.9
 redis==5.0.1
-SQLAlchemy==2.0.23
-
-# Data Processing (with pre-built wheels)
-pandas==2.2.2
-numpy==1.26.4
-# Skip scipy for now - it needs Fortran
-
-# Trading APIs
-alpaca-trade-api==3.1.1
-yfinance==0.2.33
-
-# Pure Python Technical Analysis (no compilation needed)
-pandas-ta==0.3.14b0  # Pure Python TA indicators
-# Skip TA-Lib - needs C compilation
-
-# News & Text
-feedparser==6.0.10
-beautifulsoup4==4.12.2
-lxml==5.1.0  # Has pre-built wheels
-textblob==0.17.1
-
-# JSON/Data handling
 ujson==5.9.0
-jsonschema==4.20.0
+EOF
 
-# Async support
-# Let alpaca-trade-api determine aiohttp version
-aiofiles==23.2.1
-
-# Utilities
-python-dotenv==1.0.0
-pytz==2023.3
-python-dateutil==2.8.2
-PyYAML==6.0.1
-tqdm==4.66.1
-
-# Configuration
-pydantic==2.5.2
-pydantic-settings==2.1.0
-
-# Monitoring
-prometheus-client==0.19.0
-structlog==23.2.0
-
-# Security
-PyJWT==2.8.0
-bcrypt==4.1.2
-marshmallow==3.20.1
-
-# API utilities
-httpx==0.25.2
-tenacity==8.2.3
-
-# Dashboard specific
-python-socketio==5.10.0
-eventlet==0.33.3
-Flask-Session==0.5.0
-
-# Excel/CSV handling
-openpyxl==3.1.2
-xlsxwriter==3.1.9
-
-# System monitoring
-psutil==5.9.6
-
-# Type hints
-typing-extensions==4.8.0
+git add requirements.txt
+git commit -m "Ultra-minimal requirements"
+git push
