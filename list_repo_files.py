@@ -48,7 +48,7 @@ def list_repository_contents():
     print("=" * 80)
     
     # Directories to skip
-    skip_dirs = {'.git', '__pycache__', '.pytest_cache', 'venv', 'env', '.env', 
+    skip_dirs = {'.git', '/tmp/__pycache__', '.pytest_cache', 'venv', 'env', '.env', 
                  'node_modules', '.idea', '.vscode', '*.egg-info'}
     
     # File extensions to group

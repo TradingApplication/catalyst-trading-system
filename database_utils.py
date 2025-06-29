@@ -23,7 +23,7 @@ class DatabaseServiceMixin:
         """Initialize database connection"""
         self.db_path = db_path or os.environ.get(
             'DATABASE_PATH', 
-            '/tmp/trading_system.db'  # Use /tmp for DigitalOcean App Platform
+            '/tmp//tmp/trading_system.db'  # Use /tmp for DigitalOcean App Platform
         )
         self._ensure_db_exists()
     

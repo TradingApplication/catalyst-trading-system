@@ -13,7 +13,7 @@ try:
         # We're on DigitalOcean - monkey patch the paths
         import dashboard_service
         dashboard_service.LOG_DIR = '/tmp/logs'
-        dashboard_service.DB_PATH = '/tmp/trading_system.db'
+        dashboard_service.DB_PATH = '/tmp//tmp/trading_system.db'
     
     from dashboard_minimal import app
     print("Using dashboard_minimal (no file permission issues)")

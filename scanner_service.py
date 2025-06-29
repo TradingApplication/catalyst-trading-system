@@ -55,7 +55,7 @@ class DynamicSecurityScanner(DatabaseServiceMixin if USE_DB_UTILS else object):
     Enhanced security scanner that dynamically finds trading opportunities
     """
     
-    def __init__(self, db_path='/tmp/trading_system.db'):
+    def __init__(self, db_path='/tmp//tmp/trading_system.db'):
         if USE_DB_UTILS:
             super().__init__(db_path)
         else:
@@ -110,7 +110,7 @@ class DynamicSecurityScanner(DatabaseServiceMixin if USE_DB_UTILS else object):
         os.makedirs('/tmp/logs', exist_ok=True)
         
         # File handler
-        fh = logging.FileHandler('/tmp/logs/dynamic_scanner.log')
+        fh = logging.FileHandler('/tmp//tmp/logs/dynamic_scanner.log')
         fh.setLevel(logging.INFO)
         
         # Console handler

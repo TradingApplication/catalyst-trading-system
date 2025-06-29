@@ -24,12 +24,12 @@ if IS_DIGITALOCEAN:
     # DigitalOcean App Platform - only /tmp is writable
     BASE_DIR = '/tmp'
     LOG_DIR = '/tmp/logs'
-    DB_PATH = '/tmp/trading_system.db'
+    DB_PATH = '/tmp//tmp/trading_system.db'
 else:
     # Local development
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     LOG_DIR = os.path.join(BASE_DIR, 'logs')
-    DB_PATH = os.path.join(BASE_DIR, 'trading_system.db')
+    DB_PATH = os.path.join(BASE_DIR, '/tmp/trading_system.db')
 
 # Create directories if they don't exist
 os.makedirs(LOG_DIR, exist_ok=True)

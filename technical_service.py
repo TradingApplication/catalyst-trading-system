@@ -71,7 +71,7 @@ class CatalystWeightedTechnicalAnalysis(DatabaseServiceMixin if USE_DB_UTILS els
     Generates actionable trading signals
     """
     
-    def __init__(self, db_path='/tmp/trading_system.db'):
+    def __init__(self, db_path='/tmp//tmp/trading_system.db'):
         if USE_DB_UTILS:
             super().__init__(db_path)
         else:
@@ -156,7 +156,7 @@ class CatalystWeightedTechnicalAnalysis(DatabaseServiceMixin if USE_DB_UTILS els
         os.makedirs('/tmp/logs', exist_ok=True)
         
         # File handler
-        fh = logging.FileHandler('/tmp/logs/technical_analysis.log')
+        fh = logging.FileHandler('/tmp//tmp/logs/technical_analysis.log')
         fh.setLevel(logging.INFO)
         
         # Console handler  

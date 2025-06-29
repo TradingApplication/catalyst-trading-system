@@ -72,7 +72,7 @@ class CatalystAwarePaperTrading(DatabaseServiceMixin if USE_DB_UTILS else object
     Paper trading with catalyst awareness and outcome tracking
     """
     
-    def __init__(self, db_path='/tmp/trading_system.db'):
+    def __init__(self, db_path='/tmp//tmp/trading_system.db'):
         if USE_DB_UTILS:
             super().__init__(db_path)
         else:
@@ -139,7 +139,7 @@ class CatalystAwarePaperTrading(DatabaseServiceMixin if USE_DB_UTILS else object
         os.makedirs('/tmp/logs', exist_ok=True)
         
         # File handler
-        fh = logging.FileHandler('/tmp/logs/paper_trading.log')
+        fh = logging.FileHandler('/tmp//tmp/logs/paper_trading.log')
         fh.setLevel(logging.INFO)
         
         # Console handler

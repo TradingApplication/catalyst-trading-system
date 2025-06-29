@@ -21,15 +21,15 @@ files_to_fix = [
 # Replacements to make
 replacements = [
     # Database paths
-    (r'/workspaces/trading-system/trading_system\.db', '/tmp/trading_system.db'),
-    (r'/workspaces/trading-system/logs', '/tmp/logs'),
+    (r'/workspaces/trading-system/trading_system\.db', '/tmp//tmp/trading_system.db'),
+    (r'/tmp/logs', '/tmp/logs'),
     
     # Generic paths
     (r'/workspaces/trading-system', '/tmp'),
     
     # Also fix any hardcoded workspace paths
     (r'os\.makedirs\(\'/workspaces[^\']*\',', "os.makedirs('/tmp/logs',"),
-    (r'\.FileHandler\(\'/workspaces[^\']*\.log\'\)', ".FileHandler('/tmp/logs/service.log')")
+    (r'\.FileHandler\(\'/workspaces[^\']*\.log\'\)', ".FileHandler('/tmp//tmp/logs/service.log')")
 ]
 
 def fix_file(filename):
@@ -81,7 +81,7 @@ import os
 
 class DatabaseServiceMixin:
     def __init__(self, db_path=None):
-        self.db_path = db_path or os.environ.get('DATABASE_PATH', '/tmp/trading_system.db')
+        self.db_path = db_path or os.environ.get('DATABASE_PATH', '/tmp//tmp/trading_system.db')
     
     def get_connection(self):
         return sqlite3.connect(self.db_path)

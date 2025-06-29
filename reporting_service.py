@@ -69,7 +69,7 @@ class TradingAccuracyReporting(DatabaseServiceMixin if USE_DB_UTILS else object)
     Comprehensive reporting service for trading system validation
     """
     
-    def __init__(self, db_path='/tmp/trading_system.db'):
+    def __init__(self, db_path='/tmp//tmp/trading_system.db'):
         if USE_DB_UTILS:
             super().__init__(db_path)
         else:
@@ -116,7 +116,7 @@ class TradingAccuracyReporting(DatabaseServiceMixin if USE_DB_UTILS else object)
         os.makedirs('/tmp/logs', exist_ok=True)
         
         # File handler
-        fh = logging.FileHandler('/tmp/logs/reporting.log')
+        fh = logging.FileHandler('/tmp//tmp/logs/reporting.log')
         fh.setLevel(logging.INFO)
         
         # Console handler
