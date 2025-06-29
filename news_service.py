@@ -63,7 +63,7 @@ class NewsCollectionService(DatabaseServiceMixin if USE_DB_UTILS else object):
     No analysis, no sentiment, just pure data collection
     """
     
-    def __init__(self, db_path='/workspaces/trading-system/trading_system.db'):
+    def __init__(self, db_path='/tmp/trading_system.db'):
         if USE_DB_UTILS:
             super().__init__(db_path)
         else:
@@ -100,10 +100,10 @@ class NewsCollectionService(DatabaseServiceMixin if USE_DB_UTILS else object):
         self.logger.setLevel(logging.INFO)
         
         # Create logs directory if it doesn't exist
-        os.makedirs('/workspaces/trading-system/logs', exist_ok=True)
+        os.makedirs('/tmp/logs', exist_ok=True)
         
         # File handler for persistent logs
-        fh = logging.FileHandler('/workspaces/trading-system/logs/news_collection.log')
+        fh = logging.FileHandler('/tmp/logs/news_collection.log')
         fh.setLevel(logging.INFO)
         
         # Console handler
