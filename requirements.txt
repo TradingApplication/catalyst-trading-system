@@ -1,36 +1,82 @@
-# Minimal requirements for DigitalOcean App Platform deployment
-# Core dependencies without compilation requirements
+# Catalyst Trading System - DigitalOcean App Platform Compatible
+# Pure Python dependencies (no C compilation required)
 
 # Web Framework
 Flask==3.0.0
 gunicorn==21.2.0
 Flask-CORS==4.0.0
+Werkzeug==3.0.1
 
 # Database
 psycopg2-binary==2.9.9
 redis==5.0.1
+SQLAlchemy==2.0.23
 
-# Data Processing
-pandas==2.1.4
-numpy==1.24.4
+# Data Processing (versions compatible with Python 3.11+)
+pandas==2.2.2
+numpy==1.26.4
+scipy==1.13.1
 requests==2.31.0
+urllib3==2.1.0
 
 # Trading APIs
 alpaca-trade-api==3.1.1
-yfinance==0.2.25
+yfinance==0.2.33
+
+# Technical Analysis (Pure Python - no TA-Lib)
+pandas-ta==0.3.14b0  # Pure Python technical indicators
+stockstats==0.6.2    # Additional technical indicators
 
 # News & Text
 feedparser==6.0.10
 beautifulsoup4==4.12.2
+lxml==4.9.4
+textblob==0.17.1
+
+# JSON/Data handling
+ujson==5.9.0
+jsonschema==4.20.0
+
+# Async support
+aiohttp==3.9.1
+aiofiles==23.2.1
 
 # Utilities
 python-dotenv==1.0.0
 pytz==2023.3
 python-dateutil==2.8.2
+PyYAML==6.0.1
+tqdm==4.66.1
+
+# Configuration
+pydantic==2.5.2
+pydantic-settings==2.1.0
 
 # Monitoring
 prometheus-client==0.19.0
+structlog==23.2.0
 
-# For dashboard
+# Security
+PyJWT==2.8.0
+bcrypt==4.1.2
+marshmallow==3.20.1
+
+# API utilities
+httpx==0.25.2
+tenacity==8.2.3
+ratelimit==2.2.1
+
+# Dashboard specific
 python-socketio==5.10.0
 eventlet==0.33.3
+Flask-Session==0.5.0
+
+# Excel/CSV handling
+openpyxl==3.1.2
+xlsxwriter==3.1.9
+
+# System monitoring
+psutil==5.9.6
+
+# Type hints
+typing-extensions==4.8.0
