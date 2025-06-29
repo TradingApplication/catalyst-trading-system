@@ -44,7 +44,7 @@ class NewsDriverCoordinationService(DatabaseServiceMixin if USE_DB_UTILS else ob
     Orchestrates workflow from news to trades
     """
     
-    def __init__(self, db_path='/workspaces/trading-system/trading_system.db'):
+    def __init__(self, db_path='/tmp/trading_system.db'):
         if USE_DB_UTILS:
             super().__init__(db_path)
         else:
@@ -147,10 +147,10 @@ class NewsDriverCoordinationService(DatabaseServiceMixin if USE_DB_UTILS else ob
         self.logger.setLevel(logging.INFO)
         
         # Create logs directory
-        os.makedirs('/workspaces/trading-system/logs', exist_ok=True)
+        os.makedirs('/tmp/logs', exist_ok=True)
         
         # File handler
-        fh = logging.FileHandler('/workspaces/trading-system/logs/coordination.log')
+        fh = logging.FileHandler('/tmp/logs/coordination.log')
         fh.setLevel(logging.INFO)
         
         # Console handler
