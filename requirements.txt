@@ -1,5 +1,4 @@
 # Ultra-minimal to ensure deployment works
-cat > requirements.txt << 'EOF'
 Flask==3.0.0
 gunicorn==21.2.0
 Flask-CORS==4.0.0
@@ -8,8 +7,3 @@ python-dotenv==1.0.0
 psycopg2-binary==2.9.9
 redis==5.0.1
 ujson==5.9.0
-EOF
-
-git add requirements.txt
-git commit -m "Ultra-minimal requirements"
-git push
