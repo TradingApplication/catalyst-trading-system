@@ -7,3 +7,4 @@ python-dotenv==1.0.0
 psycopg2-binary==2.9.9
 redis==5.0.1
 ujson==5.9.0
+alpaca-py==0.13.3
