@@ -1,7 +1,7 @@
 """
 Catalyst Trading System
 Name of file: app.py
-Version: 5.1.0
+Version: 5.0.0
 Last Updated: 2025-06-30
 REVISION HISTORY:
   - v1.0.0 (2025-06-29) - Initial DigitalOcean deployment
@@ -9,7 +9,6 @@ REVISION HISTORY:
   - v3.0.0 (2025-06-30) - Added community profit scanner
   - v4.0.0 (2025-06-30) - Added news service
   - v5.0.0 (2025-06-30) - Fully integrated catalyst system
-  - v5.1.0 (2025-06-30) - Fixed initialization for Gunicorn
 """
 
 import os
@@ -21,6 +20,10 @@ import threading
 
 # Add current directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+# Import our services
+from scanner_service import init_scanner
+from news_service import init_news_service
 
 # Configure logging
 os.makedirs('/tmp/logs', exist_ok=True)
@@ -55,7 +58,99 @@ except ImportError:
     ALPACA_AVAILABLE = False
     logger.warning("Alpaca package not installed")
 
-# Enhanced Dashboard HTML template
+def initialize_trading():
+    """Initialize Alpaca paper trading connection"""
+    global trading_client, account_info
+    
+    if not ALPACA_AVAILABLE:
+        logger.error("Alpaca package not available")
+        return False
+    
+    try:
+        api_key = os.getenv('ALPACA_API_KEY')
+        secret_key = os.getenv('ALPACA_SECRET_KEY')
+        
+        if not api_key or not secret_key:
+            logger.error("Alpaca API credentials not found in environment")
+            return False
+        
+        trading_client = TradingClient(api_key, secret_key, paper=True)
+        account = trading_client.get_account()
+        
+        account_info = {
+            'status': account.status,
+            'buying_power': float(account.buying_power),
+            'portfolio_value': float(account.portfolio_value),
+            'cash': float(account.cash),
+            'equity': float(account.equity)
+        }
+        
+        logger.info(f"✅ Trading client initialized. Portfolio Value: ${account_info['portfolio_value']:,.2f}")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to initialize trading client: {e}")
+        return False
+
+def update_positions():
+    """Update positions cache"""
+    global positions_cache, last_update
+    
+    if not trading_client:
+        return
+    
+    try:
+        positions = trading_client.get_all_positions()
+        positions_cache = [{
+            'symbol': pos.symbol,
+            'qty': float(pos.qty),
+            'side': pos.side,
+            'avg_entry_price': float(pos.avg_entry_price),
+            'market_value': float(pos.market_value),
+            'unrealized_pl': float(pos.unrealized_pl) if hasattr(pos, 'unrealized_pl') else 0
+        } for pos in positions]
+        
+        last_update = datetime.now()
+        logger.info(f"Updated {len(positions_cache)} positions")
+        
+    except Exception as e:
+        logger.error(f"Failed to update positions: {e}")
+
+def update_scanner_results():
+    """Update scanner results from scanner service"""
+    global scanner_opportunities
+    
+    try:
+        if app.extensions.get('scanner_service'):
+            scanner_opportunities = app.extensions['scanner_service'].scan_cache.get('final_picks', [])
+            logger.info(f"Updated scanner with {len(scanner_opportunities)} opportunities")
+    except Exception as e:
+        logger.error(f"Failed to update scanner results: {e}")
+
+def update_news_headlines():
+    """Get latest news headlines for display"""
+    global news_headlines
+    
+    try:
+        if app.extensions.get('news_service'):
+            # Get news for top opportunities
+            headlines = []
+            for opp in scanner_opportunities[:3]:
+                symbol = opp.get('symbol')
+                if symbol:
+                    news_items = app.extensions['news_service'].collect_news(symbol)
+                    for item in news_items[:2]:  # Top 2 per symbol
+                        headlines.append({
+                            'symbol': symbol,
+                            'headline': item['headline'],
+                            'impact': item['impact_score'],
+                            'keywords': item['keywords']
+                        })
+            news_headlines = headlines[:5]  # Total 5 headlines
+    except Exception as e:
+        logger.error(f"Failed to update news: {e}")
+
+# Enhanced Dashboard HTML
 DASHBOARD_HTML = '''
 <!DOCTYPE html>
 <html>
@@ -354,161 +449,6 @@ DASHBOARD_HTML = '''
 </html>
 '''
 
-# Helper functions
-def initialize_trading():
-    """Initialize Alpaca paper trading connection"""
-    global trading_client, account_info
-    
-    if not ALPACA_AVAILABLE:
-        logger.error("Alpaca package not available")
-        return False
-    
-    try:
-        api_key = os.getenv('ALPACA_API_KEY')
-        secret_key = os.getenv('ALPACA_SECRET_KEY')
-        
-        if not api_key or not secret_key:
-            logger.error("Alpaca API credentials not found in environment")
-            return False
-        
-        trading_client = TradingClient(api_key, secret_key, paper=True)
-        account = trading_client.get_account()
-        
-        account_info = {
-            'status': account.status,
-            'buying_power': float(account.buying_power),
-            'portfolio_value': float(account.portfolio_value),
-            'cash': float(account.cash),
-            'equity': float(account.equity)
-        }
-        
-        logger.info(f"✅ Trading client initialized. Portfolio Value: ${account_info['portfolio_value']:,.2f}")
-        return True
-        
-    except Exception as e:
-        logger.error(f"Failed to initialize trading client: {e}")
-        return False
-
-def update_positions():
-    """Update positions cache"""
-    global positions_cache, last_update
-    
-    if not trading_client:
-        return
-    
-    try:
-        positions = trading_client.get_all_positions()
-        positions_cache = [{
-            'symbol': pos.symbol,
-            'qty': float(pos.qty),
-            'side': pos.side,
-            'avg_entry_price': float(pos.avg_entry_price),
-            'market_value': float(pos.market_value),
-            'unrealized_pl': float(pos.unrealized_pl) if hasattr(pos, 'unrealized_pl') else 0
-        } for pos in positions]
-        
-        last_update = datetime.now()
-        logger.info(f"Updated {len(positions_cache)} positions")
-        
-    except Exception as e:
-        logger.error(f"Failed to update positions: {e}")
-
-def update_scanner_results():
-    """Update scanner results from scanner service"""
-    global scanner_opportunities
-    
-    try:
-        if app.extensions.get('scanner_service'):
-            scanner_opportunities = app.extensions['scanner_service'].scan_cache.get('final_picks', [])
-            logger.info(f"Updated scanner with {len(scanner_opportunities)} opportunities")
-    except Exception as e:
-        logger.error(f"Failed to update scanner results: {e}")
-
-def update_news_headlines():
-    """Get latest news headlines for display"""
-    global news_headlines
-    
-    try:
-        if app.extensions.get('news_service'):
-            # Get news for top opportunities
-            headlines = []
-            for opp in scanner_opportunities[:3]:
-                symbol = opp.get('symbol')
-                if symbol:
-                    news_items = app.extensions['news_service'].collect_news(symbol)
-                    for item in news_items[:2]:  # Top 2 per symbol
-                        headlines.append({
-                            'symbol': symbol,
-                            'headline': item['headline'],
-                            'impact': item['impact_score'],
-                            'keywords': item['keywords']
-                        })
-            news_headlines = headlines[:5]  # Total 5 headlines
-    except Exception as e:
-        logger.error(f"Failed to update news: {e}")
-
-def background_updater():
-    """Background thread to update all services periodically"""
-    while True:
-        try:
-            # Update trading data
-            if trading_client:
-                update_positions()
-                account = trading_client.get_account()
-                account_info.update({
-                    'status': account.status,
-                    'buying_power': float(account.buying_power),
-                    'portfolio_value': float(account.portfolio_value),
-                    'cash': float(account.cash),
-                    'equity': float(account.equity)
-                })
-            
-            # Update scanner results
-            update_scanner_results()
-            
-            # Update news headlines
-            update_news_headlines()
-            
-            threading.Event().wait(60)  # Update every minute
-            
-        except Exception as e:
-            logger.error(f"Background updater error: {e}")
-            threading.Event().wait(60)
-
-# MODULE LEVEL INITIALIZATION - This runs when Gunicorn imports the module
-logger.info("🚀 Starting Catalyst Trading System - Full Integration...")
-
-# Initialize trading
-if initialize_trading():
-    logger.info("✅ Trading initialized successfully")
-    update_positions()
-else:
-    logger.warning("⚠️ Running without trading connection")
-
-# Initialize news service
-try:
-    from news_service import init_news_service
-    news_service = init_news_service(app)
-    app.extensions['news_service'] = news_service
-    logger.info("✅ News service integrated")
-except Exception as e:
-    logger.error(f"News service initialization failed: {e}")
-
-# Initialize scanner service
-try:
-    from scanner_service import init_scanner
-    scanner_service = init_scanner(app)
-    app.extensions['scanner_service'] = scanner_service
-    logger.info("✅ Scanner service integrated")
-except Exception as e:
-    logger.error(f"Scanner service initialization failed: {e}")
-
-# Start background updater
-updater_thread = threading.Thread(target=background_updater, daemon=True)
-updater_thread.start()
-logger.info("✅ Background updater started")
-
-# ROUTES
 @app.route('/')
 def dashboard():
     """Main dashboard with all services integrated"""
@@ -570,6 +510,35 @@ def execute_trade():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+def background_updater():
+    """Background thread to update all services periodically"""
+    while True:
+        try:
+            # Update trading data
+            if trading_client:
+                update_positions()
+                account = trading_client.get_account()
+                account_info.update({
+                    'status': account.status,
+                    'buying_power': float(account.buying_power),
+                    'portfolio_value': float(account.portfolio_value),
+                    'cash': float(account.cash),
+                    'equity': float(account.equity)
+                })
+            
+            # Update scanner results
+            update_scanner_results()
+            
+            # Update news headlines
+            update_news_headlines()
+            
+            threading.Event().wait(60)  # Update every minute
+            
+        except Exception as e:
+            logger.error(f"Background updater error: {e}")
+            threading.Event().wait(60)
+
+
 @app.route('/env-test')
 def env_test():
     """Quick environment variable test"""
@@ -580,10 +549,40 @@ def env_test():
         'timestamp': datetime.now().isoformat()
     })
 
-# This section only runs when running locally with python app.py
-# Gunicorn will NOT execute this block
+
+# Initialize everything on startup
 if __name__ == '__main__':
-    # Start Flask for local development
+    logger.info("🚀 Starting Catalyst Trading System - Full Integration...")
+    
+    # Initialize trading
+    if initialize_trading():
+        logger.info("✅ Trading initialized successfully")
+        update_positions()
+    else:
+        logger.warning("⚠️ Running without trading connection")
+    
+    # Initialize news service
+    try:
+        from news_service import init_news_service
+        news_service = init_news_service(app)
+        app.extensions['news_service'] = news_service
+        logger.info("✅ News service integrated")
+    except Exception as e:
+        logger.error(f"News service initialization failed: {e}")
+    
+    # Initialize scanner service
+    try:
+        scanner_service = init_scanner(app)
+        app.extensions['scanner_service'] = scanner_service
+        logger.info("✅ Scanner service integrated")
+    except Exception as e:
+        logger.error(f"Scanner service initialization failed: {e}")
+    
+    # Start background updater
+    updater_thread = threading.Thread(target=background_updater, daemon=True)
+    updater_thread.start()
+    
+    # Start Flask
     port = int(os.getenv('PORT', 8080))
     logger.info(f"🎯 Catalyst Trading System ready on port {port}")
     logger.info("📊 Multi-stage filtering: 100 stocks → 20 catalysts → 5 opportunities")
