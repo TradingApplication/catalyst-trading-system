@@ -538,6 +538,18 @@ def background_updater():
             logger.error(f"Background updater error: {e}")
             threading.Event().wait(60)
 
+
+@app.route('/env-test')
+def env_test():
+    """Quick environment variable test"""
+    return jsonify({
+        'alpaca_key_exists': bool(os.getenv('ALPACA_API_KEY')),
+        'alpaca_secret_exists': bool(os.getenv('ALPACA_SECRET_KEY')),
+        'trading_status': trading_client is not None,
+        'timestamp': datetime.now().isoformat()
+    })
+
+
 # Initialize everything on startup
 if __name__ == '__main__':
     logger.info("🚀 Starting Catalyst Trading System - Full Integration...")
