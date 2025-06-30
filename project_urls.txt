@@ -1,7 +1,7 @@
 GitHub Repository URLs for Direct Access
 Repository: TradingApplication/catalyst-trading-system
 Branch: main
-Generated: 2025-06-29 23:37:42
+Generated: 2025-06-30 03:35:42
 ================================================================================
 
 RAW URLS (for Claude/API access):
@@ -81,6 +81,9 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 app_v100.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/app_v100.py
 
+app_v200.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/app_v200.py
+
 catalyst_setup_budget.sh
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/catalyst_setup_budget.sh
 
@@ -120,8 +123,11 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 list_repo_files.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/list_repo_files.py
 
-news_service.py
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/news_service.py
+news-service.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/news-service.py
+
+news_service_v200.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/news_service_v200.py
 
 nginx.conf
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/nginx.conf
@@ -171,8 +177,14 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 requirements_minimal.txt
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements_minimal.txt
 
-scanner_service.py
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/scanner_service.py
+runtime.txt
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/runtime.txt
+
+scanner-service.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/scanner-service.py
+
+scanner_service_v200.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/scanner_service_v200.py
 
 simple_server.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/simple_server.py
@@ -182,6 +194,9 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 
 technical_service.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/technical_service.py
+
+test-alpaca-connection.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/test-alpaca-connection.py
 
 trading_service.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/trading_service.py
