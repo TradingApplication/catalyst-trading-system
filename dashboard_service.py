@@ -8,6 +8,6 @@ REVISION HISTORY:
 """
 
 # Import the Flask app from app.py
-from app import app
+from app_v200 import app
 
 # This makes 'app' available when gunicorn runs dashboard_service:app

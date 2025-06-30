@@ -2,7 +2,7 @@
 
 **Repository:** [TradingApplication/catalyst-trading-system](https://github.com/TradingApplication/catalyst-trading-system)
 **Branch:** main
-**Generated:** 2025-06-29 12:34:59
+**Generated:** 2025-06-29 23:37:42
 
 ## Key Configuration Files
 
@@ -38,15 +38,18 @@
 - [dashboard_service_v100.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/dashboard_service_v100.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/dashboard_service_v100.py))
 - [database_utils.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/database_utils.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/database_utils.py))
 - [database_utils_old.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/database_utils_old.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/database_utils_old.py))
+- [fix-all-paths.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/fix-all-paths.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/fix-all-paths.py))
 - [fix_paths.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/fix_paths.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/fix_paths.py))
 - [list_repo_files.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/list_repo_files.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/list_repo_files.py))
 - [news_service.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/news_service.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/news_service.py))
+- [path_config.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/path_config.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/path_config.py))
 - [pattern_service.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/pattern_service.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/pattern_service.py))
 - [reporting_service.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/reporting_service.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/reporting_service.py))
 - [scanner_service.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/scanner_service.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/scanner_service.py))
 - [simple_server.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/simple_server.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/simple_server.py))
 - [technical_service.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/technical_service.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/technical_service.py))
 - [trading_service.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/trading_service.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/trading_service.py))
+- [verify-trading-config.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/verify-trading-config.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/verify-trading-config.py))
 - [wsgi.py](https://github.com/TradingApplication/catalyst-trading-system/blob/main/wsgi.py) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/wsgi.py))
 
 ### Docker
@@ -68,7 +71,6 @@
 
 ### Documentation
 
-- [Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt))
 - [Documentation/Catalyst Trading System - Architecture v2.0.0.md](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Documentation/Catalyst Trading System - Architecture v2.0.0.md) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/Catalyst Trading System - Architecture v2.0.0.md))
 - [Documentation/Catalyst Trading System - Database Schema v2.0.0.md](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Documentation/Catalyst Trading System - Database Schema v2.0.0.md) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/Catalyst Trading System - Database Schema v2.0.0.md))
 - [Documentation/Catalyst Trading System - Database Services & Data Management v2.0.0.md](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Documentation/Catalyst Trading System - Database Services & Data Management v2.0.0.md) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/Catalyst Trading System - Database Services & Data Management v2.0.0.md))
@@ -86,11 +88,13 @@
 - [requirements-reporting.txt](https://github.com/TradingApplication/catalyst-trading-system/blob/main/requirements-reporting.txt) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements-reporting.txt))
 - [requirements-technical-analysis.txt](https://github.com/TradingApplication/catalyst-trading-system/blob/main/requirements-technical-analysis.txt) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements-technical-analysis.txt))
 - [requirements.txt](https://github.com/TradingApplication/catalyst-trading-system/blob/main/requirements.txt) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements.txt))
+- [requirements_minimal.txt](https://github.com/TradingApplication/catalyst-trading-system/blob/main/requirements_minimal.txt) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements_minimal.txt))
 
 ### Scripts
 
 - [Implementation/catalyst-setup-script.sh](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Implementation/catalyst-setup-script.sh) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/catalyst-setup-script.sh))
 - [catalyst_setup_budget.sh](https://github.com/TradingApplication/catalyst-trading-system/blob/main/catalyst_setup_budget.sh) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/catalyst_setup_budget.sh))
+- [install-requirements.sh](https://github.com/TradingApplication/catalyst-trading-system/blob/main/install-requirements.sh) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/install-requirements.sh))
 - [start_script.sh](https://github.com/TradingApplication/catalyst-trading-system/blob/main/start_script.sh) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/start_script.sh))
 
 ### Data
@@ -103,3 +107,5 @@
 - [Documentation/File List 28Jun25](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Documentation/File List 28Jun25) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/File List 28Jun25))
 - [Implementation/Catalyst Trading System - Implementation Plan v2.0.0](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Implementation/Catalyst Trading System - Implementation Plan v2.0.0) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Implementation/Catalyst Trading System - Implementation Plan v2.0.0))
 - [Procfile](https://github.com/TradingApplication/catalyst-trading-system/blob/main/Procfile) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Procfile))
+- [__pycache__/dashboard_minimal.cpython-312.pyc](https://github.com/TradingApplication/catalyst-trading-system/blob/main/__pycache__/dashboard_minimal.cpython-312.pyc) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/__pycache__/dashboard_minimal.cpython-312.pyc))
+- [__pycache__/wsgi.cpython-312.pyc](https://github.com/TradingApplication/catalyst-trading-system/blob/main/__pycache__/wsgi.cpython-312.pyc) ([raw](https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/__pycache__/wsgi.cpython-312.pyc))

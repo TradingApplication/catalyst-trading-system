@@ -1,7 +1,7 @@
 GitHub Repository URLs for Direct Access
 Repository: TradingApplication/catalyst-trading-system
 Branch: main
-Generated: 2025-06-29 12:34:59
+Generated: 2025-06-29 23:37:42
 ================================================================================
 
 RAW URLS (for Claude/API access):
@@ -32,9 +32,6 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 
 Dockerfile.trading
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Dockerfile.trading
-
-Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt
-https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/ALPACA_PAPER_API_KEY PK8ZTV60LQ83FA.txt
 
 Documentation/Catalyst Trading System - Architecture v2.0.0.md
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/Documentation/Catalyst Trading System - Architecture v2.0.0.md
@@ -69,6 +66,12 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 README.md
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/README.md
 
+__pycache__/dashboard_minimal.cpython-312.pyc
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/__pycache__/dashboard_minimal.cpython-312.pyc
+
+__pycache__/wsgi.cpython-312.pyc
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/__pycache__/wsgi.cpython-312.pyc
+
 app.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/app.py
 
@@ -102,11 +105,17 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 docker-compose.yml
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/docker-compose.yml
 
+fix-all-paths.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/fix-all-paths.py
+
 fix_paths.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/fix_paths.py
 
 init_database.sql
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/init_database.sql
+
+install-requirements.sh
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/install-requirements.sh
 
 list_repo_files.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/list_repo_files.py
@@ -116,6 +125,9 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 
 nginx.conf
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/nginx.conf
+
+path_config.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/path_config.py
 
 pattern_service.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/pattern_service.py
@@ -156,6 +168,9 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 requirements.txt
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements.txt
 
+requirements_minimal.txt
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/requirements_minimal.txt
+
 scanner_service.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/scanner_service.py
 
@@ -170,6 +185,9 @@ https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/mai
 
 trading_service.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/trading_service.py
+
+verify-trading-config.py
+https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/verify-trading-config.py
 
 wsgi.py
 https://raw.githubusercontent.com/TradingApplication/catalyst-trading-system/main/wsgi.py
